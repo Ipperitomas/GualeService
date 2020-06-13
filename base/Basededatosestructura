@@ -1,0 +1,22 @@
+
+Tabla Emprendimientos 
+Id
+Emprendimientos_Nombre
+Emprendimientos_descripcion
+Emprendimientos_id_categoria
+Emprendimientos_Datos:
+{"nombredueño":"nombredueño","apellidodueño":"apellidodueño","instagram":"Link","Facebook":"Link","logo":"ubicacion y nombrelogo","ubicacion":"ubicacion"}
+Emprendimientos_galeria:[{imagen1},{imagen2},{imagen3},{imagen4}]
+Contador_visitas
+
+
+
+Tabla Categorias
+id
+Categorias_Nombre
+
+Tabla Usuarios
+id
+User_name
+Correo
+Contraseña

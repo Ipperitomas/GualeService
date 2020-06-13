@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+   
+    <link rel="stylesheet" href="../css/Formularioregistro.css">
+    
+</head>
+<body>
+    <a href="../Views/index.html"><div class="menu"></div></a>
+
+
+    <div class="content">
+        <div class="container">
+            <h3>Formulario de registro</h3>
+          
+            
+            <form id="formulariodatospersonales">
+              <div class="row">
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Nombre">
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Apellido">
+                  </div>
+                </div>
+                
+                <h7>Nombre emprendimiento</h7>
+                <input type="text" value="" placeholder="Nombre del emprendimiento" class="form-control">
+                <span>Elija categoria</span>
+            <select class="form-control form-control-sm">
+              <option>Tienda de ropa</option>
+              <option>Comercio</option>
+                <option>Peluqueria Masculina</option>
+                <option>Peluqueria Femenina</option>
+                <option>Peluqueria Unisex</option>
+                
+            </select>
+            <div class="form-group">
+              <label for="Direccion">Direccion</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="25 De Mayo 118">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="Localidad">Ciudad</label>
+                  <select class="form-control">
+                    <option>Gualeguaychu</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputState">Provincia</label>
+                  <select id="Provincia" class="form-control">
+                    <option selected>Entre Rios</option>
+                    
+                  </select>
+                </div>
+                <span>Tenes Instragam?->Agrega el link de tu ultima publicacion</span>
+                <span> -Ingrese el Link de su post de Instagram</span>
+                <span class="fab fa-instagram" id="Logos-redsocial"></span>
+                
+                <input type="text" class="form-control" id="inputAddress" placeholder="Ejemplo: https://www.instagram.com/tippsistemas/">
+                
+                <span>Tenes Facebook?->Agrega el link de tu perfil</span>
+                <i class="fab fa-facebook" id="Logos-redsocial"></i>
+                <span> -Ingrese el Link de su perfil de Facebook</span>
+                
+                <input type="text" class="form-control" id="inputAddress" placeholder="Ejemplo: https://www.Facebook.com/tippsistemas/">
+                <div class="imagepreview" id="imgSalida">
+                  <label for="file-input" style="color: transparent;"></label>
+                  <input class="form_control" name="file-input" id="file-input" type="file" accept="image/*" multiple/>
+                  <hr>
+                  
+                  <button type="button" class="fixed-bottom btn btn-dark" id="btnRegistro" onclick="EnviarFormulario();">Registrar emprendimiento</button>
+                </div>
+                
+              </div>
+            </form>
+        
+  </div>
+
+  
+<script type="text/javascript">
+  function EnviarFormulario(){
+    Datospersonales = document.getElementById("formulariodatospersonales");
+    imagen = document.getElementById("file-input").value;
+    console.log(Datospersonales);
+    var parametros = {
+      "nombre": Datospersonales[0].value,
+      "apellido" : Datospersonales[1].value,
+      "nombre_emprendimiento":Datospersonales[2].value,
+      "categoria":Datospersonales[3].value,
+      "direccion":Datospersonales[4].value,
+      "Ciudad":Datospersonales[5].value,
+      "Provincia":Datospersonales[6].value,
+      "link_ig":Datospersonales[7].value,
+      "link_fb":Datospersonales[8].value
+    };
+    console.log(parametros);
+    $.ajax({
+      data : parametros,
+      url : '../ajax/Suscripcion.php',
+      type: 'post',
+      beforeSend: function(){
+        console.log("beforesend");
+      },
+      success: function(response){
+        console.log("resultado");
+        window.location.href = "../ajax/Suscripcion.php";
+        
+      }
+    });
+
+}
+
+</script>
+    
+<script>
+  function readFile(input) {
+    
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+ 
+            reader.onload = function (e) {
+
+                var filePreview = document.createElement('img');
+                filePreview.id = 'file-preview';
+                filePreview.style.width="500px";
+                filePreview.style.height="450px";
+                //filePreview.style.position ="absolute";
+                filePreview.style.marginLeft = "5px";
+                filePreview.style.marginTop= "40px";
+                //e.target.result contents the base64 data from the image uploaded
+                filePreview.src = e.target.result;
+                console.log(e.target.result);
+ 
+                var previewZone = document.getElementById('imgSalida');
+                previewZone.appendChild(filePreview);
+            }
+ 
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+ 
+    var fileUpload = document.getElementById('file-input');
+    fileUpload.onchange = function (e) {
+        readFile(e.srcElement);
+    }
+
+
+</script>
+    
+
+
+</body>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+      $('.menu').load('./plantilla.html');
+    });
+  </script>
+</html>

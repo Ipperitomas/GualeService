@@ -1,0 +1,24 @@
+body{
+    background-image: url(../assets/img/fondoform.jpg);
+    /* background-position: 0vw; */
+}
+.content{
+    margin-top: 90px;
+    align-content:center;
+    color: white;
+}
+.content h7{
+    text-align: center;
+}
+#Logos-redsocial {
+    width: 20px;
+    height: 20px;
+}
+.imagepreview{
+    
+    position: relative;
+    width: 100px;
+    height: 70px;
+
+}
+
